@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Eye of Ra</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #333;
+        }
+        #chat {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            height: 200px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .user {
+            text-align: right;
+            color: #007BFF;
+        }
+        .response {
+            text-align: left;
+            color: #28A745;
+        }
+        input[type="text"] {
+            width: calc(100% - 100px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://via.placeholder.com/100" alt="Eye of Ra">
+        <h1>Chat with Eye of Ra</h1>
+        <div id="chat">
+        </div>
+        <div>
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const responses = [
+            "I see your destiny...",
+            "The sands whisper secrets to me.",
+            "The Eye of Ra watches over you.",
+            "Your path is clear.",
+            "Mysteries unfold as you speak.",
+            "Ra's light guides you always."
+        ];
+
+        const chat = document.getElementById('chat');
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+
+            if (message) {
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user';
+                userMessage.textContent = message;
+                chat.appendChild(userMessage);
+
+                chat.scrollTop = chat.scrollHeight;
+
+                userInput.value = '';
+
+                setTimeout(() => {
+                    const responseMessage = document.createElement('div');
+                    responseMessage.className = 'message response';
+                    responseMessage.textContent = responses[Math.floor(Math.random() * responses.length)];
+                    chat.appendChild(responseMessage);
+
+                    chat.scrollTop = chat.scrollHeight;
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>
